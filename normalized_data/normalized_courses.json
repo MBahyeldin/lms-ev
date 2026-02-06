@@ -1,0 +1,72 @@
+[
+  {
+    "course_id": 1,
+    "course_name": "Learning Center",
+    "category_name": "",
+    "sections": [
+      {
+        "section_number": 1,
+        "section_name": "",
+        "modules": [
+          {
+            "module_id": "",
+            "module_type": "",
+            "module_name": "",
+            "module_content": "",
+            "module_content_type": "UNKNOWN",
+            "onDisk": false,
+            "onSharePoint": false,
+            "onYouTube": false,
+            "isDeleted": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_id": 3,
+    "course_name": "Email Writing",
+    "category_name": "Welcome Onboard!",
+    "sections": [
+      {
+        "section_number": 1,
+        "section_name": "Email Writing Training",
+        "modules": [
+          {
+            "module_id": 13,
+            "module_type": "resource",
+            "module_name": "Slides",
+            "module_content": "/Users/devtools/Documents/lms-ev/filedir/73/ab/73ab9f9e0a709bbe20ce03f0b8362c10872af9b5 | Name: Email Writing - New Temp.pdf | Type: application/pdf | Size: 2206872 bytes",
+            "module_content_type": "DOCUMENT",
+            "onDisk": true,
+            "onSharePoint": false,
+            "onYouTube": false,
+            "isDeleted": false
+          },
+          {
+            "module_id": 14,
+            "module_type": "url",
+            "module_name": "Recording - Session 2",
+            "module_content": "https://effvision-my.sharepoint.com/:v:/p/asultan/Ebk7mhS3xRFPqF51SlgV3dIBT5uFeoroCQOK2sHPAsjyYA?e=w2Ig6p",
+            "module_content_type": "UNKNOWN",
+            "onDisk": false,
+            "onSharePoint": true,
+            "onYouTube": false,
+            "isDeleted": true
+          },
+          {
+            "module_id": 15,
+            "module_type": "url",
+            "module_name": "Recording - Session 1",
+            "module_content": "https://effvision-my.sharepoint.com/:v:/p/hmotawe/Ee4L2b7M1XpPiWa5h-F8088BQuczYYmQTlNGWIhXJGMHIw?e=dW2SlY",
+            "module_content_type": "VIDEO",
+            "onDisk": false,
+            "onSharePoint": true,
+            "onYouTube": false,
+            "isDeleted": false
+          }
+        ]
+      }
+    ]
+  }
+]
