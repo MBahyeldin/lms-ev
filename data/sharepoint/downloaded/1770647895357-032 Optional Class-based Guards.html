@@ -1,0 +1,23 @@
+<p>The previous lecture introduced you to guards using the modern, recommended function-based approach.</p><p>But you can also use an older (deprecated!) class-based approach:</p><pre class="prettyprint linenums">@Injectable({ providedIn: 'root' })
+class CanMatchTeamSection implements CanMatch {
+  constructor(private router: Router) {}
+  canMatch(route: Route, segments: UrlSegment[]) {
+    const shouldGetAccess = Math.random();
+    if (shouldGetAccess &lt; 0.5) {
+      return true;
+    }
+    return new RedirectCommand(this.router.parseUrl('/unauthorized'));
+  }
+}</pre><p>And attach the guard to a route like this:</p><pre class="prettyprint linenums">{
+  path: 'users/:userId', // &lt;your-domain&gt;/users/&lt;uid&gt;
+  component: UserTasksComponent,
+  children: userRoutes,
+  canMatch: [CanMatchTeamSection],
+  data: {
+    message: 'Hello!',
+  },
+  resolve: {
+    userName: resolveUserName,
+  },
+  title: resolveTitle,
+},</pre>

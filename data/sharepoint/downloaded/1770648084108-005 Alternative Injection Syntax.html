@@ -1,0 +1,16 @@
+<p>Injecting services (or, in general:&nbsp;dependencies) into components via the <strong>constructor functions</strong> is the most common way of perform such injections. You'll see this approach in <strong>most Angular projects</strong> you'll be working on.</p><p>However, there also is an alternative way of injecting dependencies:&nbsp;Via Angular's <code>inject()</code> function.</p><p>Instead of injecting <code>LoggingService</code> like this:</p><pre class="prettyprint linenums">@Component(...)
+export class AccountComponent {
+  // @Input() &amp;&nbsp;@Output() code as shown in the previous lecture
+
+  constructor(private loggingService: LoggingService) {}
+}</pre><p>you could inject it like this, by using the <code>inject()</code> function:</p><pre class="prettyprint linenums">import { Component, Input, Output, inject } from '@angular/core'; //&nbsp;&lt;- Add inject import
+
+@Component(...)
+export class AccountComponent {
+  // @Input() &amp;&nbsp;@Output() code as shown in the previous lecture
+  private loggingService?:&nbsp;LoggingService;&nbsp;// &lt;- must be added
+
+  constructor() {
+    this.loggingService =&nbsp;inject(LoggingService);
+  }
+}</pre><p>It's totally up to you, which approach you prefer. In this course&nbsp;(and, as mentioned, in most projects), we'll use the constructor approach.</p>

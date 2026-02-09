@@ -1,0 +1,12 @@
+<p>Depending on the Angular version your project is using, you can also build Components in a different way:&nbsp;As <strong>"Standalone Components"</strong>.</p><p>This course comes with an <a href="https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/32463318#overview" rel="noopener noreferrer" target="_blank">entire section</a> focusing on Standalone Components - hence you'll learn more about this feature later.</p><p>The main idea behind Standalone Components is that you can build Angular components &amp; apps without (or with less) <code>@NgModule</code>s - i.e., Standalone Components allow you to write less (boilerplate) code.</p><h4>How Are Standalone Components Built?</h4><p>You build a standalone component by adding the <code>standalone: true</code> property/value pair to the @Component decorator.</p><p>Like this:</p><pre class="prettyprint linenums">@Component({
+  standalone:&nbsp;true,
+  selector:&nbsp;'app-cmp',
+  template:&nbsp;'&lt;h1&gt;I work standalone!&lt;/h1&gt;'
+})
+export class SomeComponent {}</pre><p>Such components then don't have to (and shouldn't be) added to any <code>@NgModule</code>.</p><p>Therefore, if you only work with such components, no <code>@NgModule</code> is needed at all.</p><p>To <em>"tell Angular"</em> which features should be available in a Standalone Component (e.g., which other component selectors can be used there), you have to add the special <code>imports</code> property to the <code>@Component</code> selector.</p><p>Like this:</p><pre class="prettyprint linenums">@Component({
+  standalone:&nbsp;true,
+  selector:&nbsp;'app-cmp',
+  template:&nbsp;'&lt;app-some-other-component /&gt;',
+  imports:&nbsp;[SomeOtherComponent]
+})
+export class SomeComponent {}</pre><p>But again, you'll learn more about this later in the course, in a dedicated section.</p><h4>Should You Use Standalone Components</h4><p>Standalone components can reduce the amount of boilerplate code you have to write - after all, you don't have to add and manage those extra <code>@NgModule</code>s anymore.</p><p>That being said, many Angular projects (especially big, established projects) still use <code>@NgModule</code>s since this was the only way of building Angular components for more than 5 years.</p><p>That's also the reason for why this course - at the moment - uses <code>@NgModule</code>s as a default and covers Standalone Components in a separate section.</p>

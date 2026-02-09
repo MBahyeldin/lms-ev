@@ -1,0 +1,21 @@
+<p>In the previous lecture, you learned how to define route data resolvers as functions. This is the modern, recommended approach.</p><p>But you can also define resolvers as classes - like this:</p><pre class="prettyprint linenums">@Injectable({ providedIn: 'root' })
+export class UserNameResolver implements Resolve&lt;string&gt; {
+  constructor(private usersService: UsersService) {}
+  resolve(activatedRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const userName =
+      this.usersService.users.find(
+        (u) =&gt; u.id === activatedRoute.paramMap.get('userId')
+      )?.name || '';
+    return userName;
+  }
+}</pre><p>The resolve class is then assigned to a route like this:</p><pre class="prettyprint linenums">{
+  path: 'users/:userId', // &lt;your-domain&gt;/users/&lt;uid&gt;
+  component: UserTasksComponent,
+  children: userRoutes,
+  data: {
+    message: 'Hello!',
+  },
+  resolve: {
+    userName: UserNameResolver,
+  },
+}</pre><p>Please note that this approach is deprecated though - the modern, function-based one (shown in the previous lecture) is therefore recommended!</p>

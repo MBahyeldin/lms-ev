@@ -1,0 +1,49 @@
+<p>In our example, we didn't encounter any issues when we tried to redirect the user. But that's not always the case when adding redirections.</p>
+
+<p>By default, Angular matches paths by prefix. That means, that the following route will match both <code>/recipes</code> and just <code>/</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><code>{ path: '', redirectTo: '/somewhere-else' }</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Actually, Angular will give you an error here, because that's a common gotcha:This route will now <strong>ALWAYS</strong>redirect you!Why?</p>
+
+
+
+
+
+
+
+<p>Since the default matching strategy is <code>"prefix"</code>, Angular checks if the path you entered in the URLdoes <strong>start with the path</strong> specified in the route. Of course every path starts with <code>''</code> (Important:That's no whitespace, it's simply "nothing").</p>
+
+
+
+<p>To fix this behavior, you need to change the matching strategy to<code> "full"</code>:</p>
+
+
+
+<p><code>{ path: '', redirectTo: '/somewhere-else', pathMatch: 'full' }</code><br></p>
+
+<p>Now, you only get redirected, if the full path is <code>''</code>(so only if you got NOother content in your path in this example).</p>

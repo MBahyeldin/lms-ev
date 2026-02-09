@@ -1,0 +1,15 @@
+<p>Modern Angular apps typically use standalone components, not <code>NgModule</code>s. But many Angular projects DO&nbsp;still use this "older approach".</p><p>Therefore, it's important to understand how you can provide Angular's HttpClient when working with <code>NgModule</code>s.</p><p>Thankfully, it's pretty straightforward. Instead of providing the http client via <code>provideHttpClient()</code> passed to <code>bootstrapApplication()</code>, you pass it to the <code>providers</code> array of your root <code>NgModule</code>:</p><pre class="prettyprint linenums">import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    PlacesComponent,
+    // ... etc
+  ],
+  imports: [BrowserModule, FormsModule],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}</pre>
