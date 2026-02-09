@@ -1,4 +1,0 @@
-<p>You don't have to extract dynamic route parameters via signal-based inputs - you can also use <code>@Input()</code>-based inputs!</p><p>To do this, you can define the input like this:</p><pre class="prettyprint linenums">@Input({required:&nbsp;true}) userId!:&nbsp;string;</pre><p>You can then use this input in any way needed - for example inside of a getter function.</p><p>If you want to run some code whenever the input value changes, you can also define an extra setter function that contains the to-be-executed code. Like this:</p><pre class="prettyprint linenums">@Input()
-set userId(uid: string) {
-  console.log(uid);
-}</pre>

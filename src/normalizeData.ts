@@ -32,7 +32,7 @@ async function normalizeData() {
     const chunksLength = Math.ceil(flattenedModules.length / concurrentLength);
 
     try {
-        for (let i = 0; i < 1; i++) {  
+        for (let i = 0; i < chunksLength; i++) {  
             const chunk = flattenedModules.slice(i * concurrentLength, (i + 1) * concurrentLength);
             const actions = chunk.map(module => {
             let course = courses.find(c => c.course_id === module.course_id);

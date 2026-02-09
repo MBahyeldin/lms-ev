@@ -1,9 +1,0 @@
-<p>When working with Signal effects, you sometimes might need to perform some cleanup work before the effect function runs again (e.g., to clear some timer or something like that).</p><p>Angular's <code>effect()</code>&nbsp;allows you to do that!</p><p>It does provide you with an <code>onCleanup</code> hook which you can execute as part of your effect function to define what should happen before the effect code runs the next time:</p><pre class="prettyprint linenums">effect((onCleanup) =&gt; {
-  const tasks = getTasks();
-  const timer = setTimeout(() =&gt; {
-    console.log(`Current number of tasks: ${tasks().length}`);
-  }, 1000);
-  onCleanup(() =&gt; {
-    clearTimeout(timer);
-  });
-});</pre>
