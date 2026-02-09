@@ -53,7 +53,7 @@ export function getDocumentInput ({
     if (parts.length != 4) {
         throw new Error ('bad content for document: ' + content);
     }
-    // "/Users/devtools/Documents/lms-ev/filedir/73/ab/73ab9f9e0a709bbe20ce03f0b8362c10872af9b5 
+    // "/home/azureuser/lms-ev/filedir/73/ab/73ab9f9e0a709bbe20ce03f0b8362c10872af9b5 
     //  Name: Email Writing - New Temp.pdf 
     //  Type: application/pdf 
     //  Size: 2206872 bytes",
