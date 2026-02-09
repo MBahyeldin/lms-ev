@@ -106,6 +106,9 @@ export default class Zoho {
                 if (json.LESSON) {
                     return json.LESSON?.[0];
                 }
+                 if (json.COURSE) {
+                    return json.COURSE;
+                }
                 return json;
             }
             return {

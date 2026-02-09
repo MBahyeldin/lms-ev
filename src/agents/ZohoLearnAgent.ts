@@ -37,20 +37,23 @@ export default class ZohoAgent {
         const currentCourse = await this.getCourse({
             name,
         });
-        if (currentCourse.errorCode != 'PATTERN_NOT_MATCHED' && !currentCourse.failed) {
+        if (!currentCourse.errorCode) {            
             console.warn('There is a course with this name, Skip creating');
             return currentCourse;
         }
         const path = '/course';
-        const method = 'POST';
-        return await this.zohoClient.request({
+        const method = 'POST';        
+
+        const x =  await this.zohoClient.request({
             path,
             method,
             body: {
                 name,
                 description
             }
-        })
+        });
+        
+        return x;
     }
 
     public async getCourse({
@@ -62,7 +65,7 @@ export default class ZohoAgent {
         const courseData = await this.zohoClient.request({
             path,
             method: 'GET'
-        });        
+        });                
         return courseData;
     }
 
@@ -74,7 +77,7 @@ export default class ZohoAgent {
         course: ZohoCourse,
         name: string,
     }){
-        const currentChapter = course.lessons.find((l) => {
+        const currentChapter = course.lessons?.find((l) => {
             return l.type === 'CHAPTER' && l.name == name;
         });
         if (currentChapter) {
@@ -82,14 +85,17 @@ export default class ZohoAgent {
         }
         const path = `/course/${course.id}/lesson`;
         const method = 'POST';        
-        return await this.zohoClient.request({
+        const chapter =  await this.zohoClient.request({
             path,
             method,
             body: [{
                 name,
                 type: "CHAPTER",
             }]
-        })
+        });
+
+        return chapter
+        
     }
 
     public async addLessonToChapter({
@@ -103,13 +109,8 @@ export default class ZohoAgent {
         name: string,
         type: string,
     }){
-        const currentChapter = course.lessons.find((l) => {
-            return l.type === 'CHAPTER' && l.url == chapter.url;
-        });
-        if (!currentChapter) {
-            throw new Error('Cannot add to chapter before creating it!');
-        }
-        const currentLesson = currentChapter?.lessons.find((l) => {
+        const currentChapter = chapter;
+        const currentLesson = currentChapter?.lessons?.find((l) => {
             return l.type === type && l.name == name;
         });
 

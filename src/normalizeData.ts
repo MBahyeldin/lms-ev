@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { CourseModel, FlattenedModule } from './models/Course';
-import VimeoAgent from './agents/VimeoAgent';
-import ZohoAgent from './agents/ZohoLearnAgent'
-// import { saveSharePointData } from './utils/sharePointData';
 
 const ABS_PATH = path.resolve();
 const DATA_DIR = path.join(ABS_PATH, 'data');
@@ -81,55 +78,5 @@ async function normalizeData() {
 }
 
 (async () => {
-    // const vimeoAgent = VimeoAgent.getInstance();
-    // await vimeoAgent.readMe();
-    // const fileToUploed = path.join(ABS_PATH, 'data', 'sharepoint', 'downloaded', '001 Introduction.mp4');
-    // vimeoAgent.uploadVideo(fileToUploed, 'Test Upload from API', 'This is a test upload via Vimeo API');
-    normalizeData();
-
-    // const zohoAgent = ZohoAgent.getInstance();
-    // const course = await zohoAgent.getOrCreateCourse({
-    //     name: 'Mini Four',
-    //     description: 'course desc'
-    // });
-
-    // const chapter = await zohoAgent.addChapterToCourse({
-    //     course,
-    //     name: 'Automation Testing'
-    // });
-
-    // const lesson = await zohoAgent.addLessonToChapter({
-    //     course,
-    //     chapter,
-    //     name: 'first lesson',
-    //     type: 'TEXT'
-    // });
-
-    // await zohoAgent.setLessonContent({
-    //     course,
-    //     lesson,
-    //     type: 'TEXT-IMAGE',
-    //     content: '/Users/devtools/Desktop/test.png'
-    // })
-
-    // await zohoAgent.setLessonContent({
-    //     course,
-    //     lesson,
-    //     type: 'DOCUMENT',
-    //     content: '/Users/devtools/Documents/lms-ev/filedir/1f/4e/1f4ed583f9e268675d773114afc8c64a6a7428a5 | Name: Image_Comparison_Tool_Presentation.pptx | Type: application/vnd.openxmlformats-officedocument.presentationml.presentation | Size: 43658 bytes'
-    // })
-
-    //  const resp = await zohoAgent.setLessonContent({
-    //     course,
-    //     lesson,
-    //     type: 'VIDEO-VIMEO',
-    //     content: '1161545548'
-    // })    
-
-    // const resp = await zohoAgent.setLessonContent({
-    //     course,
-    //     lesson,
-    //     type: 'VIDEO-YOUTUBE',
-    //     content: 'https://www.youtube.com/watch?v=Ng6_C87__wg&list=RDxHdnOe1oIT0&index=2'
-    // })
+     normalizeData();
 })();
