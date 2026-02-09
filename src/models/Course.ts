@@ -79,7 +79,8 @@ export class CourseModel implements Course {
         let isUrl = false;
         if (section) {
             const moduleContentType = (async () => {
-                switch (moduleData.module_type.toLowerCase()) {
+                try {
+                    switch (moduleData.module_type.toLowerCase()) {
                     case 'resource':
                         onDisk = true;
                         return "DOCUMENT";
@@ -136,6 +137,10 @@ export class CourseModel implements Course {
                         return "TEXT";
                     default:
                         return "UNKNOWN";
+                }
+                } catch (err) {
+                    console.log(err);
+                    return "UNKNOWN"
                 }
             })();
             section.modules.push({

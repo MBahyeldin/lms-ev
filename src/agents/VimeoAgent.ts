@@ -48,7 +48,7 @@ export default class VimeoAgent {
                     name: videoName,
                     description: videoDescription,
                     privacy: { embed: 'whitelist', view: 'disable', download: false },
-                    folder_uri: '/user/253793088/projects/28179309',
+                    folder_uri: '/user/253793088/projects/28179747',
                     embed_domains: ['https://learn.zoho.com'],
                 },
                 (uri) => {
@@ -56,7 +56,7 @@ export default class VimeoAgent {
                 },
                 function (bytes_uploaded, bytes_total) {
                     var percentage = ((bytes_uploaded / bytes_total) * 100).toFixed(2);
-                    console.log(bytes_uploaded, bytes_total, percentage + '% uploaded');
+                    // console.log(bytes_uploaded, bytes_total, percentage + '% uploaded');
                 },
                 function (error) {
                     console.log('Failed to upload video: ' + error);
