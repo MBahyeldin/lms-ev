@@ -54,7 +54,7 @@ async function downloadSharePointFile(sharePointData: {
     mimeType: string;
     url: string;
 }) {
-    const filePath = path.join(downloadedPath, sharePointData.name);
+    const filePath = path.join(downloadedPath, `${Date.now()}-${sharePointData.name}`);
     const client = await getClient();
     
     const downloadStream = await client.api(`/shares/${sharePointData.url}/driveItem/content`).getStream();

@@ -77,6 +77,7 @@ export class CourseModel implements Course {
         let isDeleted = false;
         let isImage = false;
         let isUrl = false;
+        let moduleContent = moduleData.module_content;
         if (section) {
             const moduleContentType = (async () => {
                 try {
@@ -98,23 +99,21 @@ export class CourseModel implements Course {
                                     const { mimeType } = data;
                                     if (mimeType) {
                                         if (mimeType.startsWith('video/')) {
-                                            moduleData.module_content = data.localPath;
                                             const vimeoAgent = VimeoAgent.getInstance();
                                             const videoPath = await vimeoAgent.uploadVideo(data.localPath, data.name, data.name) as string;
                                             const vimeoVideoId = videoPath.split('/').pop()
-                                            moduleData.module_content = vimeoVideoId ? vimeoVideoId : "-1";
+                                            moduleContent = vimeoVideoId ? vimeoVideoId : "-1";
                                             fs.unlinkSync(data.localPath) // to avoid disk full
                                             return "VIDEO";
-
                                         } else if (mimeType.startsWith('image/')) {
-                                            moduleData.module_content = data.localPath
+                                            moduleContent = data.localPath
                                             isImage = true;
                                             return "TEXT";
                                         } else if (mimeType === 'application/pdf'
                                             || mimeType.startsWith('application')
                                             || mimeType.startsWith('text/html')
                                         ) {
-                                            moduleData.module_content = data.localPath
+                                            moduleContent = data.localPath
                                             return "DOCUMENT";
                                         } else {
                                             return "UNKNOWN";
@@ -146,6 +145,7 @@ export class CourseModel implements Course {
             section.modules.push({
                 ...moduleData,
                 module_content_type: await moduleContentType,
+                module_content: moduleContent,
                 onDisk,
                 onSharePoint,
                 onYouTube,
