@@ -48,7 +48,7 @@ export default class VimeoAgent {
                     name: videoName,
                     description: videoDescription,
                     privacy: { embed: 'whitelist', view: 'disable', download: false },
-                    folder_uri: '/user/253793088/projects/28104457',
+                    folder_uri: '/user/253793088/projects/28179309',
                     embed_domains: ['https://learn.zoho.com'],
                 },
                 (uri) => {

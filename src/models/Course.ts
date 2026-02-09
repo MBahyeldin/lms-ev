@@ -1,5 +1,6 @@
 import getSharePointUrlData from "../utils/sharePoint";
 import VimeoAgent from "../agents/VimeoAgent";
+import fs from 'fs';
 
 export interface CourseData {
     course_id: number;
@@ -101,6 +102,7 @@ export class CourseModel implements Course {
                                             const videoPath = await vimeoAgent.uploadVideo(data.localPath, data.name, data.name) as string;
                                             const vimeoVideoId = videoPath.split('/').pop()
                                             moduleData.module_content = vimeoVideoId ? vimeoVideoId : "-1";
+                                            fs.unlinkSync(data.localPath) // to avoid disk full
                                             return "VIDEO";
 
                                         } else if (mimeType.startsWith('image/')) {
