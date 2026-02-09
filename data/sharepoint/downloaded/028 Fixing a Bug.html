@@ -1,0 +1,5 @@
+<p>In the next lecture, we'll add some code to access the controls of our form array:</p><p><code>*ngFor="let hobbyControl of signupForm.get('hobbies').controls;&nbsp;let i =&nbsp;index"</code></p><p>This code will fail as of the latest Angular version.</p><p>You can fix it easily though. Outsource the "get the controls"&nbsp;logic into a method of your component code (the <code>.ts</code> file):</p><pre class="prettyprint linenums">getControls() {
+  return (&lt;FormArray&gt;this.signupForm.get('hobbies')).controls;
+}</pre><p>In the template, you can then use:</p><p><code>*ngFor="let hobbyControl of getControls();&nbsp;let i =&nbsp;index"</code> </p><p><strong>Alternatively</strong>, you can set up a getter and use an alternative type casting syntax:</p><pre class="prettyprint linenums">get controls() {
+  return (this.signupForm.get('hobbies') as FormArray).controls;
+}</pre><p>and then in the template:</p><p><code>*ngFor="let hobbyControl of controls;&nbsp;let i =&nbsp;index"</code></p><p>This adjustment is required due to the way TS works and Angular parses your templates (it doesn't understand TS&nbsp;there).</p>
