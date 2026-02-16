@@ -31,6 +31,11 @@ async function createCourses() {
                         description: c.course_name
                     });
 
+                    if (course.lessons?.length) {
+                        console.warn('There are chapters in this course, Skip creating chapters and lessons');
+                        continue;
+                    }
+
                     for (let section of c.sections.sort((a, b) => a.section_number - b.section_number)) {
                         const chapter = await zohoAgent.addChapterToCourse({
                             course,

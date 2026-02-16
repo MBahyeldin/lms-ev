@@ -37,6 +37,7 @@ export default class ZohoAgent {
         const currentCourse = await this.getCourse({
             name,
         });
+        
         if (currentCourse.id) {            
             console.warn('There is a course with this name, Skip creating');
             return currentCourse;
@@ -60,7 +61,7 @@ export default class ZohoAgent {
         name,
     }: {
         name: string
-    }) {
+    }) {        
         const path = `/course?course.url=${normalizeName(name)}`;                
         const courseData = await this.zohoClient.request({
             path,
@@ -201,7 +202,7 @@ export default class ZohoAgent {
                     body,
                     moreHeaders: extraHeaders,
                 })
-            break
+            break;
             case 'VIDEO-VIMEO':
                 const vimeoContent = getVideoVimeoInput({
                     videoId: content
@@ -234,12 +235,14 @@ export default class ZohoAgent {
             body,
             bodyText,
             moreHeaders,
-        })        
+        });
+
+        return x;
     }
 
 }
 
 
 function normalizeName (name: string): string {
-     return name.toLocaleLowerCase().replace(/\s/g, '-')
+     return name.toLocaleLowerCase().split(' ').map(w => w.replace(/[^a-z0-9-]/g, '')).filter(Boolean).filter(c => c != '-').join('-')
 }
