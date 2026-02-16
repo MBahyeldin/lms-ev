@@ -70,6 +70,52 @@ export default class ZohoAgent {
         return courseData;
     }
 
+    public async getCourseByUrl({
+        url,
+    }: {
+        url: string
+    }) {        
+        const path = `/course?course.url=${url}`;                
+        const courseData = await this.zohoClient.request({
+            path,
+            method: 'GET'
+        });                
+        return courseData as ZohoCourse;
+    }
+
+    public async setOrderedLessons({
+        course,
+        chapter,
+        lessons,
+    }: {
+        course: ZohoCourse,
+        chapter: Lesson,
+        lessons: Lesson[],
+    }) {
+        const path = `/course/${course.id}/reorder`;
+        const method = 'PUT';
+
+        for (let i = 0; i < lessons.length; i++) {
+            const l = lessons[i];
+            if (!l?.id) {
+                console.log(`No id found!`);
+                continue;
+            }
+            console.log(`Lesson: ${l.name}, id: ${l.id}`);
+            const body = {
+                id: l.id,
+                parentId: chapter.id,
+                prevSiblingId: i === 0 ? -1 : lessons[i - 1]?.id,
+            }
+
+            await this.zohoClient.request({
+                path,
+                method,
+                body,
+            });
+        }
+    }
+
     // CHAPTER
     public async addChapterToCourse({
         course,
@@ -240,6 +286,16 @@ export default class ZohoAgent {
         return x;
     }
 
+
+    public async getSources() {
+        const path = '/course?view=all'
+        const method = 'GET';
+        const courses = await this.zohoClient.request({
+            path,
+            method,
+        });
+        return courses as ZohoCourse[];
+    }
 }
 
 
