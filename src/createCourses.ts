@@ -40,7 +40,7 @@ async function createCourses() {
                         for (let module of section.modules) {
                             let moduleContentType = "";
                             await new Promise((res) => {
-                                setTimeout(() => res(true), 3000);
+                                setTimeout(() => res(true), 1000);
                             });
                             switch (module.module_content_type) {
                                 case "TEXT":
@@ -49,7 +49,7 @@ async function createCourses() {
                                     } else {
                                         moduleContentType = "TEXT-IMAGE"
                                     }
-                                    break
+                                    break;
                                 case "DOCUMENT":
                                     moduleContentType = "DOCUMENT";
                                     break;

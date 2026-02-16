@@ -37,7 +37,7 @@ export default class ZohoAgent {
         const currentCourse = await this.getCourse({
             name,
         });
-        if (!currentCourse.errorCode) {            
+        if (currentCourse.id) {            
             console.warn('There is a course with this name, Skip creating');
             return currentCourse;
         }
