@@ -36,12 +36,12 @@ async function createCourses() {
                         course,
                         name: section.section_name
                     });  
-                     await new Promise((res) => {
-                        setTimeout(() => res(true), 3000);
-                    });
 
                     for (let module of section.modules) {
                         let moduleContentType = "";
+                        await new Promise((res) => {
+                            setTimeout(() => res(true), 3000);
+                        });
                         switch (module.module_content_type) {
                             case "TEXT":
                                 if (module.isUrl) {
