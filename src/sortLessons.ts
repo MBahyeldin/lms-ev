@@ -23,8 +23,8 @@ async function createCourses() {
                         continue;
                     }
                     const sortedLessons = lessons.sort((a, b) => {
-                        const aNum = parseFloat(a.name.match(/\d+\.?[\d+]?/)?.[0] ?? '0');
-                        const bNum = parseFloat(b.name.match(/\d+\.?[\d+]?/)?.[0] ?? '1');
+                        const aNum = parseFloat(a.name.match(/\d+\.?-?[\d+]?/)?.[0] ?? '0');
+                        const bNum = parseFloat(b.name.match(/\d+\.?-?[\d+]?/)?.[0] ?? '1');
                         return aNum - bNum;
                     });
                     await zohoAgent.setOrderedLessons({
