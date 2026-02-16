@@ -6,7 +6,7 @@ async function createCourses() {
     const zohoAgent = ZohoAgent.getInstance();
 
     try {
-        const courses = (await zohoAgent.getSources()).slice(0, 10); // Limit to first 5 courses for testing
+        const courses = (await zohoAgent.getSources()); // Limit to first 5 courses for testing
        for (const c of courses) {
             try {
                 console.log(`Processing course: ${c.name}`);
